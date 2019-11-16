@@ -16,7 +16,6 @@ import 'package:english_words/english_words.dart';
 //
 //int _random2 = Random().nextInt(germanWords.length);
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -24,15 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'KinderKommtIhrBitte',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Kinder kommt Ihr bitte!'),
-        ),
-        body: Center(
-          child: RandomWords(),
-          // child: Text('Wähle Deine Waffe ' + wordPair.asPascalCase),
-        ),
-      ),
+      home: RandomWords(),
     );
   }
 }
@@ -40,10 +31,44 @@ class MyApp extends StatelessWidget {
 class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _biggerFont = const TextStyle(fontSize: 18.0);
+
+//  TextStyle bold24Roboto = TextStyle(
+//    color: Colors.white,
+//    fontSize: 24,
+//    fontWeight: FontWeight.w900,
+//  );
   @override
   Widget build(BuildContext context) {
-    final wordPair = WordPair.random();
-    return Text(wordPair.asPascalCase);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Startup Name Generator'),
+      ),
+      body: _buildSuggestions(),
+    );
+  }
+
+  Widget _buildRow(WordPair pair) {
+    return ListTile(
+      title: Text(
+        pair.asPascalCase,
+        style: _biggerFont,
+      ),
+    );
+  }
+
+  Widget _buildSuggestions() {
+    return ListView.builder(
+        padding: const EdgeInsets.all(16.0),
+        itemBuilder: /*1*/ (context, i) {
+          if (i.isOdd) return Divider();
+          /*2*/
+
+          final index = i ~/ 2; /*3*/
+          if (index >= _suggestions.length) {
+            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+          }
+          return _buildRow(_suggestions[index]);
+        });
   }
 }
 
