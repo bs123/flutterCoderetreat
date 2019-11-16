@@ -38,3 +38,6 @@ lib/generated_plugin_registrant.dart
 
 # personal flavor - temp no ios
 ios/
+
+# audio files, with potential copyright
+audio/
