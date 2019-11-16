@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   german_words: ^0.1.24
   english_words: ^3.1.0
+  audioplayers: ^0.13.2
 
 dev_dependencies:
   flutter_test:
@@ -72,3 +73,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+  assets:
+    - assets/sound_alarm.mp3
+    - assets/file_example_WAV_1MG.wav

@@ -7,6 +7,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:german_words/german_words.dart';
 import 'package:english_words/english_words.dart';
+import 'package:audioplayers/audio_cache.dart';
+
+const audioPath = "file_example_WAV_1MG.wav";
+const alarmAudioPath = "sound_alarm.mp3";
 
 void main() => runApp(MyApp());
 
@@ -15,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'KinderKommtIhrBitte',
-      home: RandomWords(),
+      home: TextAndIconButton(),
     );
   }
 }
@@ -63,7 +67,31 @@ class RandomWordsState extends State<RandomWords> {
   }
 }
 
+class TextAndIconButton extends StatelessWidget {
+  static AudioCache player = new AudioCache();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Text test'),
+      ),
+      body: Center(
+        child: FlatButton.icon(
+          color: Colors.blue,
+          icon: Icon(Icons.android), //`Icon` to display
+          label: Text('play'), //`Text` to display
+          onPressed: () {
+            player.play(audioPath);
+          },
+        ),
+      ),
+    );
+  }
+}
+
 class RandomWords extends StatefulWidget {
   @override
   RandomWordsState createState() => RandomWordsState();
+// TextAndIconButton()
 }

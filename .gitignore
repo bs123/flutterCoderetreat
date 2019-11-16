@@ -40,4 +40,4 @@ lib/generated_plugin_registrant.dart
 ios/
 
 # audio files, with potential copyright
-audio/
+assets/
